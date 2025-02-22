@@ -1,101 +1,211 @@
-import Image from "next/image";
+"use client"
+import Image from "next/image"
+import Navbar from "./components/Navbar"
+import ImageGallery from "./components/ImageGallery"
+import { motion, useScroll, useTransform } from "framer-motion"
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  const { scrollY } = useScroll();
+ 
+  const fadeOpacity = useTransform(scrollY, [400, 900], [1, 0]);
+  const fadeInNewScreen = useTransform(scrollY, [400,800], [0, 1]);
+  const blurEffect = useTransform(scrollY, [500, 1000], ["0px", "20px"]);
+  const scaleEffect = useTransform(scrollY, [400, 1000], [1.1, 1]);
+
+  return (
+    <div className="relative w-full min-h-screen overflow-x-hidden font-serif">
+      {/* Black Overlay on Top*/}
+      <div className="absolute top-0 left-0 w-full h-[125px] bg-gradient-to-b from-black/80 to-transparent z-10 pointer-events-none"></div>
+        <Navbar />
+      <motion.div 
+        initia={{ opacity:0 }}
+        animate={{ opacity: 1}}
+        transition={{ duration: 1.5 }}
+        className="relative w-full min-h-[130vh] overflow-hidden"
+        >
+
+        <motion.div 
+          style={{
+            opacity: fadeOpacity,
+            filter: 'blur(${blurEffect})',
+            scale: scaleEffect,
+          }}
+          className="absolute top-0 left-0 w-full h-full">
+          <img
+            src="/WandererAboveFog.jpeg"
+            alt="Background"
+            className="w-full h-full object-cover object-center"
+          />
+          <motion.div
+            style = {{ opacity: fadeOpacity }}
+            className="absolute bottom-0 w-full h-[250px] bg-gradient-to-b from-transparent to-white"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+
+          </motion.div>
+        </motion.div>
+
+    <motion.div 
+      initial={{opacity:0, y:50}}
+      animate={{ opacity:1, y:-80 }}
+      transition={{ duration:1, delay:0.3 }}
+      className="absolute inset-0 flex flex-col items-start justify-center px-16 z-10">
+        <div className="relative">
+        <div className="absolute inset-0 bg-black opacity-0 hover:opacity-100 transition-opacity duration-0 hover:duration-50 pointer-events-none"></div>
+          <h1 className="text-6xl md:text-8xl font-bold tracking-wide relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-50">
+            Alexander M. Li
+          </h1>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <div className="relative mt-2">
+          <div className="absolute inset-0 bg-black opacity-0 hover:opacity-70 transition-opacity duration-0 hover:duration-50 pointer-events-none"></div>
+          <h2 className="text-2xl md:text-3xl font-light relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-50">
+            Software Engineer
+          </h2>
+        </div>
+        </motion.div>
+        
+        <motion.div 
+          initial = {{ opacity: 0}}
+          animate = {{ opacity: 1}}
+          transition={{ duration: 1, delay: 0.3}}
+          className="absolute right-16 mt-[350px] w-[400px] text-white/90 text-lg">
+          <div className="relative group">
+            <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+            <div className="relative z-10 p-4">
+              <p className="leading-relaxed">
+                I am a developer and history enthusiast, bridging technology with the past. I love elegant design, structured code, and meaningful experiences.
+              </p>
+              <div className="mt-6">
+                <a
+                  href="mailto:amli2@wisc.edu"
+                  target="_blank"
+                  rel = "noopener noreferrer"
+                  className="px-6 py-3 border border-white/40 rounded-full text-white/90 hover:bg-white/20 transition duration-200"
+                >
+                  Contact Me
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+      </motion.div>
+      
+      <motion.div
+        style={{
+          opacity: fadeOpacity,
+          backdropFilter: `blur(${blurEffect})`,
+        }}
+        className="absolute top-[78.5vh] w-full h-[400px] bg-gradient-to-b from-transparent to-black"
+      ></motion.div>
+
+    
+      <motion.div
+        style={{ opacity: fadeInNewScreen }}
+        className="w-full h-[800px] bg-[#F5F5F5] text-black flex justify-start p-12 flex-col font-serif"
+      > 
+          <hr className="w-[85%] border-t-4 border-gray-300 mx-auto" />
+
+          <motion.h2 className="mt-12 ml-10 text-6xl font-bold">
+            My Portfolio Website
+          </motion.h2>
+
+          <h3 className=" ml-11 text-2xl">
+            University of Wisconsin–Madison 
+          </h3>
+          <h3 className="ml-11">
+              2023-2027
+          </h3>
+          <h3 className="ml-11">
+              B.S. Computer Science & History 
+          </h3>
+        <motion.div
+        style={{ opacity: fadeInNewScreen }}
+        className="w-full bg-[#F5F5F5] text-black flex justify-start p-12 flex-col"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <p className="text-xl">
+            My name is Alex, and I'm currently a junior at the University of Wisconsin - Madison, studying Computer Science 
+            and History. I have a strong interest in software development, with prior experience at Wisconsin Athletics
+           and Madison Bach Musicians, where I contributed to projects that enhanced digital infrastructure and user 
+           experiences. My passion for history lies in Early Modern European History, where I explore the political, 
+           social, and cultural transformations that shaped the modern world. By combining my technical expertise with 
+           my historical curiosity, I enjoy analyzing patterns across time, whether in coding challenges or historical 
+           narratives.
+          </p>
+          <p className="mt-10 text-xl">
+          Outside of school, my hobbies include working out, swimming, hanging out with friends, and exploring history. 
+          I enjoy staying active, whether it’s lifting, swimming, or competing in club swimming. I also love reading about 
+          historical & present events, especially Early Modern European History, and discovering how the past shapes the present.
+          </p>
+          <p className="mt-10 text-xl">
+            I'm currently reading:&nbsp; 
+            <a href="https://www.goodreads.com/book/show/609614.True_Love"
+               target="_blank" 
+               rel = "noopener noreferrer"
+               className="text-blue-600 underline">
+               True Love 
+            </a>
+            &nbsp;by Thich Nhat Hanh
+          </p>
+          <p className="text-xl">
+            I also do leetcode:  &nbsp;
+            <a href="https://leetcode.com/u/alexmli/"
+              target="_blank" 
+              rel = "noopener noreferrer"
+              className="text-blue-600 underline">
+              Check it out!
+            </a>
+          </p>
+        </motion.div>
+        <hr className="w-[85%] border-t-4 border-gray-300 mx-auto" />
+      </motion.div>
+
+      <motion.div
+        style={{ opacity: fadeInNewScreen }}
+        className="w-full min-h-screen bg-[#F5F5F5] text-black flex justify-start p-12 flex-col font-serif"
+      > 
+
+        <div className="flex flex-col items-center -mt-10">
+          <h1 className="font-bold text-5xl">
+            Everyone has a story.
+          </h1>
+          <h1 className="mt-3 text-2xl">
+            Here's my story this year through photos
+          </h1>
+          
+          <div className="flex flex-row justify-center gap-8">
+           
+          </div>
+            <ImageGallery />
+        </div>
+        
+        <div className="flex flex-col justify-start relative bottom-0 mt-20 font-serif text-gray-900">
+        <div className="flex flex-row items-center mt-2">
+          <h1 className="text-7xl tracking-wide">Let's Connect</h1>
+          <div className="flex ml-12 space-x-12 text-4xl mt-3 font-light">
+            <a href="https://www.linkedin.com/in/alexanderli523/" 
+               className="text-[#5a5a5a] hover:text-[#005582] transition-colors duration-300"
+               target="_blank"
+               rel = "noopener noreferrer">
+              LinkedIn
+            </a>
+            <a href="https://github.com/alexmli23" 
+               className="text-[#5a5a5a] hover:text-[#222] transition-colors duration-300"
+              target="_blank"
+              rel = "noopener noreferrer">
+              GitHub
+            </a>
+            <a href="mailto:amli2@wisc.edu" className="text-[#5a5a5a] hover:text-[#8b0000] transition-colors duration-300"
+            target="_blank"
+            rel = "noopener noreferrer">
+              Email
+            </a>
+          </div>
+        </div>
+        <hr className="w-[82%] border-t-2 border-gray-400 mt-4" />
+      </div>
+
+      </motion.div>
     </div>
   );
 }

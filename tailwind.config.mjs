@@ -11,6 +11,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        serif: ['Playfair Display', 'EB Garamond', 'serif'],
+        sans: ['Inter', 'Helvetica', 'sans-serif'],
+      },
     },
   },
   plugins: [],
