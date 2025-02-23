@@ -3,9 +3,17 @@ import Image from "next/image"
 import Navbar from "./components/Navbar"
 import ImageGallery from "./components/ImageGallery"
 import { motion, useScroll, useTransform } from "framer-motion"
+import { useState, useEffect, useRef } from "react";
 
 export default function Home() {
 
+  const [imageHeight, setImageHeight] = useState(0);
+  const imgRef = useRef(null);
+  useEffect(() => {
+    if (imgRef.current) {
+      setImageHeight(imgRef.current.clientHeight);
+    }
+  }, []);
   const { scrollY } = useScroll();
  
   const fadeOpacity = useTransform(scrollY, [400, 900], [1, 0]);
@@ -45,49 +53,56 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-    <motion.div 
-      initial={{opacity:0, y:50}}
-      animate={{ opacity:1, y:-80 }}
-      transition={{ duration:1, delay:0.3 }}
-      className="absolute inset-0 flex flex-col items-start justify-center px-16 z-10">
-        <div className="relative">
-        <div className="absolute inset-0 bg-black opacity-0 hover:opacity-100 transition-opacity duration-0 hover:duration-50 pointer-events-none"></div>
-          <h1 className="text-6xl md:text-8xl font-bold tracking-wide relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-50">
-            Alexander M. Li
-          </h1>
-        </div>
-        <div className="relative mt-2">
-          <div className="absolute inset-0 bg-black opacity-0 hover:opacity-70 transition-opacity duration-0 hover:duration-50 pointer-events-none"></div>
-          <h2 className="text-2xl md:text-3xl font-light relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-50">
-            Software Engineer
-          </h2>
-        </div>
-        </motion.div>
-        
         <motion.div 
-          initial = {{ opacity: 0}}
-          animate = {{ opacity: 1}}
-          transition={{ duration: 1, delay: 0.3}}
-          className="absolute right-16 mt-[350px] w-[400px] text-white/90 text-lg">
-          <div className="relative group">
-            <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-            <div className="relative z-10 p-4">
-              <p className="leading-relaxed">
-                I am a developer and history enthusiast, bridging technology with the past. I love elegant design, structured code, and meaningful experiences.
-              </p>
-              <div className="mt-6">
-                <a
-                  href="mailto:amli2@wisc.edu"
-                  target="_blank"
-                  rel = "noopener noreferrer"
-                  className="px-6 py-3 border border-white/40 rounded-full text-white/90 hover:bg-white/20 transition duration-200"
-                >
-                  Contact Me
-                </a>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: -80 }}
+  transition={{ duration: 1, delay: 0.3 }}
+  className="absolute top-[43%] left-[5%] translate-y-[-50%] z-10 flex flex-col items-start md:flex-row md:items-center md:space-x-8"
+>
+  {/* Name & Job Title */}
+  <div>
+    <div className="relative">
+      <div className="absolute inset-0 bg-black opacity-0 hover:opacity-100 transition-opacity duration-0 hover:duration-50 pointer-events-none"></div>
+      <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-[550%] font-bold tracking-wide relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-50">
+        Alexander M. Li
+      </h1>
+    </div>
+    <div className="relative mt-2">
+      <div className="absolute inset-0 bg-black opacity-0 hover:opacity-70 transition-opacity duration-0 hover:duration-50 pointer-events-none"></div>
+      <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-[222%] font-light relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-50">
+        Software Engineer
+      </h2>
+    </div>
+  </div>
+
+  {/* Description & Contact Button */}
+  <motion.div 
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1, delay: 0.3 }}
+    className="md:mt-0 lg: top-[-12%] lg:absolute lg:left-[120%] md:w-[25vw] max-w-[1000px] min-w-[250px] text-white/90 text-sm sm:text-base md:text-lg lg:text-[120%]"
+  >
+    <div className="relative group">
+      <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+      <div className="relative z-10 p-4">
+        <p className="leading-relaxed">
+          I am a developer and history enthusiast, bridging technology with the past. I love elegant design, structured code, and meaningful experiences.
+        </p>
+        <div className="mt-6">
+          <a
+            href="mailto:amli2@wisc.edu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 border border-white/40 rounded-full text-white/90 hover:bg-white/20 transition duration-200"
+          >
+            Contact Me
+          </a>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+</motion.div>
+
 
       </motion.div>
       
@@ -95,8 +110,9 @@ export default function Home() {
         style={{
           opacity: fadeOpacity,
           backdropFilter: `blur(${blurEffect})`,
+          bottom: `${imageHeight * 0.785}px`, // 78.5% of the image height
         }}
-        className="absolute top-[78.5vh] w-full h-[400px] bg-gradient-to-b from-transparent to-black"
+        className="absolute w-full h-[400px] bg-gradient-to-b from-transparent to-black"
       ></motion.div>
 
     
@@ -165,7 +181,7 @@ export default function Home() {
         className="w-full min-h-screen bg-[#F5F5F5] text-black flex justify-start p-12 flex-col font-serif"
       > 
 
-        <div className="flex flex-col items-center -mt-10">
+        <div className="flex flex-col items-center mt-0 sm:mt-60 md:mt-12 lg:-mt-20">  
           <h1 className="font-bold text-5xl">
             Everyone has a story.
           </h1>
@@ -180,31 +196,42 @@ export default function Home() {
         </div>
         
         <div className="flex flex-col justify-start relative bottom-0 mt-20 font-serif text-gray-900">
-        <div className="flex flex-row items-center mt-2">
-          <h1 className="text-7xl tracking-wide">Let's Connect</h1>
-          <div className="flex ml-12 space-x-12 text-4xl mt-3 font-light">
-            <a href="https://www.linkedin.com/in/alexanderli523/" 
-               className="text-[#5a5a5a] hover:text-[#005582] transition-colors duration-300"
-               target="_blank"
-               rel = "noopener noreferrer">
-              LinkedIn
-            </a>
-            <a href="https://github.com/alexmli23" 
-               className="text-[#5a5a5a] hover:text-[#222] transition-colors duration-300"
-              target="_blank"
-              rel = "noopener noreferrer">
-              GitHub
-            </a>
-            <a href="mailto:amli2@wisc.edu" className="text-[#5a5a5a] hover:text-[#8b0000] transition-colors duration-300"
-            target="_blank"
-            rel = "noopener noreferrer">
-              Email
-            </a>
+          {/* Heading & Links */}
+          <div className="flex flex-col sm:flex-row items-center mt-2">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl tracking-wide text-center sm:text-left">
+              Let's Connect
+            </h1>
+            <div className="flex flex-col sm:flex-row sm:ml-12 sm:space-x-12 mt-3 text-xl sm:text-2xl md:text-4xl font-light text-center sm:text-left">
+              <a 
+                href="https://www.linkedin.com/in/alexanderli523/" 
+                className="text-[#5a5a5a] hover:text-[#005582] transition-colors duration-300"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+              <a 
+                href="https://github.com/alexmli23" 
+                className="text-[#5a5a5a] hover:text-[#222] transition-colors duration-300 sm:ml-12"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+              <a 
+                href="mailto:amli2@wisc.edu" 
+                className="text-[#5a5a5a] hover:text-[#8b0000] transition-colors duration-300 sm:ml-12"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Email
+              </a>
+            </div>
           </div>
-        </div>
-        <hr className="w-[82%] border-t-2 border-gray-400 mt-4" />
-      </div>
 
+          {/* Divider */}
+          <hr className="w-[90%] sm:w-[82%] border-t-2 border-gray-400 mt-4" />
+        </div>
       </motion.div>
     </div>
   );

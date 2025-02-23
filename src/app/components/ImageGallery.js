@@ -3,20 +3,20 @@ import { useMemo } from "react";
 
 const images = [
   [
-    { src: "./PlaneWindow.png", alt: "Plane back to Seattle", height: 300 },
-    { src: "./ForestPath.png", alt: "Forest road", height: 250 },
+    { src: "./PlaneWindow.png", alt: "Plane back to Seattle", height: "30vh" },
+    { src: "./ForestPath.png", alt: "Forest road", height: "25vh" },
   ],
   [
-    { src: "./MonetAtAIC.png", alt: "Monet Painting at the Art Institute of Chicago", height: 200 },
-    { src: "./ChiSky.png", alt: "Chicago Skyline", height: 280 },
+    { src: "./MonetAtAIC.png", alt: "Monet Painting at the Art Institute of Chicago", height: "20vh" },
+    { src: "./ChiSky.png", alt: "Chicago Skyline", height: "28vh" },
   ],
   [
-    { src: "./SnowboardInSeattle.png", alt: "Snowboarding in Seattle", height: 250 },
-    { src: "./NikiConcert.png", alt: "Niki Concert in Chicago!", height: 300 },
+    { src: "./SnowboardInSeattle.png", alt: "Snowboarding in Seattle", height: "25vh" },
+    { src: "./NikiConcert.png", alt: "Niki Concert in Chicago!", height: "30vh" },
   ],
   [
-    { src: "./CarRide.png", alt: "Car Ride to Winter Retreat", height: 280 },
-    { src: "./Me.png", alt: "Friends trip to Chicago!", height: 200 },
+    { src: "./CarRide.png", alt: "Car Ride to Winter Retreat", height: "28vh" },
+    { src: "./Me.png", alt: "Friends trip to Chicago!", height: "20vh" },
   ],
 ];
 
@@ -24,13 +24,14 @@ const ImageCard = ({ src, alt, height }) => (
   <motion.div
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.98 }}
-    className="bg-gray-300 w-[180px] rounded-lg overflow-hidden will-change-transform"
+    className="bg-gray-300 w-[10vw] rounded-lg overflow-hidden will-change-transform"
     style={{ height }}
     aria-hidden="true"
   >
     <img src={src} alt={alt} className="object-cover w-full h-full rounded-md" loading="lazy" />
   </motion.div>
 );
+
 
 const ImageGallery = () => {
   const renderedImages = useMemo(() => {
