@@ -181,7 +181,7 @@ export default function Home() {
         className="w-full min-h-screen bg-[#F5F5F5] text-black flex justify-start p-12 flex-col font-serif"
       > 
 
-        <div className="flex flex-col items-center mt-0 sm:mt-60 md:mt-12 lg:-mt-20">  
+        <div className="flex flex-col items-center mt-[143vh] sm:mt-[143vh] md:mt-[80vh] lg:-mt-[3vh]">  
           <h1 className="font-bold text-5xl">
             Everyone has a story.
           </h1>
