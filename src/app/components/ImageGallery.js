@@ -3,20 +3,20 @@ import { useMemo } from "react";
 
 const images = [
   [
-    { src: "/PlaneWindow.png", alt: "Plane back to Seattle", height: 300 },
-    { src: "/ForestPath.png", alt: "Forest road", height: 250 },
+    { src: "./PlaneWindow.png", alt: "Plane back to Seattle", height: 300 },
+    { src: "./ForestPath.png", alt: "Forest road", height: 250 },
   ],
   [
-    { src: "/MonetAtAIC.png", alt: "Monet Painting at the Art Institute of Chicago", height: 200 },
-    { src: "/ChiSky.png", alt: "Chicago Skyline", height: 280 },
+    { src: "./MonetAtAIC.png", alt: "Monet Painting at the Art Institute of Chicago", height: 200 },
+    { src: "./ChiSky.png", alt: "Chicago Skyline", height: 280 },
   ],
   [
-    { src: "/SnowboardInSeattle.png", alt: "Snowboarding in Seattle", height: 250 },
-    { src: "/NikiConcert.png", alt: "Niki Concert in Chicago!", height: 300 },
+    { src: "./SnowboardInSeattle.png", alt: "Snowboarding in Seattle", height: 250 },
+    { src: "./NikiConcert.png", alt: "Niki Concert in Chicago!", height: 300 },
   ],
   [
-    { src: "/CarRide.png", alt: "Car Ride to Winter Retreat", height: 280 },
-    { src: "/Me.png", alt: "Friends trip to Chicago!", height: 200 },
+    { src: "./CarRide.png", alt: "Car Ride to Winter Retreat", height: 280 },
+    { src: "./Me.png", alt: "Friends trip to Chicago!", height: 200 },
   ],
 ];
 

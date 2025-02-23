@@ -33,7 +33,7 @@ export default function Home() {
           }}
           className="absolute top-0 left-0 w-full h-full">
           <img
-            src="/WandererAboveFog.jpeg"
+            src="./WandererAboveFog.jpeg"
             alt="Background"
             className="w-full h-full object-cover object-center"
           />
