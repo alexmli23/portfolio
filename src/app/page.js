@@ -118,7 +118,7 @@ export default function Home() {
     
       <motion.div
         style={{ opacity: fadeInNewScreen }}
-        className="w-full h-[800px] bg-[#F5F5F5] text-black flex justify-start p-12 flex-col font-serif"
+        className="w-full min-h-screen bg-[#F5F5F5] text-black flex justify-start p-12 flex-col font-serif"
       > 
           <hr className="w-[85%] border-t-4 border-gray-300 mx-auto" />
 
@@ -139,7 +139,7 @@ export default function Home() {
         style={{ opacity: fadeInNewScreen }}
         className="w-full bg-[#F5F5F5] text-black flex justify-start p-12 flex-col"
         >
-          <p className="text-xl">
+          <p className="text-xl sm:text-lg md:text-base">
             My name is Alex, and I'm currently a junior at the University of Wisconsin - Madison, studying Computer Science 
             and History. I have a strong interest in software development, with prior experience at Wisconsin Athletics
            and Madison Bach Musicians, where I contributed to projects that enhanced digital infrastructure and user 
@@ -148,7 +148,7 @@ export default function Home() {
            my historical curiosity, I enjoy analyzing patterns across time, whether in coding challenges or historical 
            narratives.
           </p>
-          <p className="mt-10 text-xl">
+          <p className="mt-10 text-xl sm:text-lg md:text-base">
           Outside of school, my hobbies include working out, swimming, hanging out with friends, and exploring history. 
           I enjoy staying active, whether it’s lifting, swimming, or competing in club swimming. I also love reading about 
           historical & present events, especially Early Modern European History, and discovering how the past shapes the present.
@@ -173,15 +173,16 @@ export default function Home() {
             </a>
           </p>
         </motion.div>
-        <hr className="w-[85%] border-t-4 border-gray-300 mx-auto" />
       </motion.div>
-
+      <div className="bg-[#F5F5F5]">
+        <hr className="w-[85%] border-t-4 border-gray-300 mx-auto bg-[#F5F5F5]" />
+      </div>
       <motion.div
         style={{ opacity: fadeInNewScreen }}
-        className="w-full min-h-screen bg-[#F5F5F5] text-black flex justify-start p-12 flex-col font-serif"
+        className="w-full min-h-screen bg-[#F5F5F5] text-black flex justify-start p-12 flex-col font-serif" 
       > 
 
-        <div className="flex flex-col items-center mt-[143vh] sm:mt-[143vh] md:mt-[80vh] lg:-mt-[3vh]">  
+      <div className="flex flex-col items-center min-h-screen">
           <h1 className="font-bold text-5xl">
             Everyone has a story.
           </h1>
