@@ -13,12 +13,12 @@ const Navbar = () => {
         <Link href={`${basePath}/projects`} className="relative hover:text-white after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-[2px] after:bg-white after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">
           Projects
         </Link>
-        <a href={`${basePath}/Alex_swe_Resume_copy.pdf`} 
+        <Link href={`${basePath}/Alex_swe_Resume_copy.pdf`} 
            target="_blank"
            rel="noopener noreferrer"
            className="relative hover:text-white after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-[2px] after:bg-white after:transition-all after:duration-300 hover:after:w-full hover:after:left-0">
           Resume
-        </a>
+        </Link>
       </div>
     </div>
   );
