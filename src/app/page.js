@@ -25,7 +25,9 @@ export default function Home() {
     <div className="relative w-full min-h-screen overflow-x-hidden font-serif">
       {/* Black Overlay on Top*/}
       <div className="absolute top-0 left-0 w-full h-[125px] bg-gradient-to-b from-black/80 to-transparent z-10 pointer-events-none"></div>
+      <div className="text-white/90">
         <Navbar />
+      </div>
       <motion.div 
         initia={{ opacity:0 }}
         animate={{ opacity: 1}}
@@ -99,7 +101,7 @@ export default function Home() {
         style={{
           opacity: fadeOpacity,
           backdropFilter: `blur(${blurEffect})`,
-          bottom: `${imageHeight * 0.785}px`, // 78.5% of the image height
+          bottom: `${imageHeight * 0.785}px`, 
         }}
         className="absolute w-full h-[400px] bg-gradient-to-b from-transparent to-black"
       ></motion.div>
@@ -119,7 +121,7 @@ export default function Home() {
             University of Wisconsin–Madison 
           </h3>
           <h3 className="ml-11">
-              2026
+              Graduation: 2026
           </h3>
           <h3 className="ml-11">
               B.S. Computer Science & History 
@@ -185,7 +187,7 @@ export default function Home() {
             <ImageGallery />
         </div>
         
-        <div className="flex flex-col justify-start relative bottom-0 mt-20 font-serif text-gray-900">
+        <div className="flex flex-col justify-start relative bottom-0 font-serif text-gray-900">
           {/* Heading & Links */}
           <div className="flex flex-col sm:flex-row items-center mt-2">
             <h1 className="text-4xl sm:text-5xl md:text-7xl tracking-wide text-center sm:text-left">
