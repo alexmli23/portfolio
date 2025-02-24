@@ -54,56 +54,45 @@ export default function Home() {
         </motion.div>
 
         <motion.div 
-  initial={{ opacity: 0, y: 50 }}
-  animate={{ opacity: 1, y: -80 }}
-  transition={{ duration: 1, delay: 0.3 }}
-  className="absolute top-[43%] left-[5%] translate-y-[-50%] z-10 flex flex-col items-start md:flex-row md:items-center md:space-x-8"
->
-  {/* Name & Job Title */}
-  <div>
-    <div className="relative">
-      <div className="absolute inset-0 bg-black opacity-0 hover:opacity-100 transition-opacity duration-0 hover:duration-50 pointer-events-none"></div>
-      <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-[550%] font-bold tracking-wide relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-50">
-        Alexander M. Li
-      </h1>
-    </div>
-    <div className="inline-block relative mt-2">
-      <div className="absolute inset-0 bg-black opacity-0 hover:opacity-70 transition-opacity duration-0 hover:duration-50 pointer-events-none"></div>
-      <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-[222%] font-light relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-50">
-        Software Engineer
-      </h2>
-    </div>
-  </div>
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: -80 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="absolute top-[43%] translate-y-[-50%] z-10 flex flex-col md:flex-row md:items-center md:justify-between w-full px-6"
+        >
+          {/* Name & Job Title */}
+          <div className="relative md:left-[5%] lg:left-[2%]">
+            <div className="absolute inset-0 bg-black opacity-0 hover:opacity-100 transition-opacity duration-0 hover:duration-50 pointer-events-none"></div>
+            <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-[550%] font-bold tracking-wide relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-50">
+              Alexander M. Li
+            </h1>
+            <div className="inline-block relative mt-2">
+              <div className="absolute inset-0 bg-black opacity-0 hover:opacity-70 transition-opacity duration-0 hover:duration-50 pointer-events-none"></div>
+              <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-[222%] font-light relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-50">
+                Software Engineer
+              </h2>
+            </div>
+          </div>
 
-  {/* Description & Contact Button */}
-  <motion.div 
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 1, delay: 0.3 }}
-    className="md:mt-0 lg: top-[-12%] lg:absolute lg:left-[120%] md:w-[25vw] max-w-[1000px] min-w-[250px] text-white/90 text-sm sm:text-base md:text-lg lg:text-[120%]"
-  >
-    <div className="relative group">
-      <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-      <div className="relative z-10 p-4">
-        <p className="leading-relaxed">
-          I am a developer and history enthusiast, bridging technology with the past. I love elegant design, structured code, and meaningful experiences.
-        </p>
-        <div className="mt-6">
-          <a
-            href="mailto:amli2@wisc.edu"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 border border-white/40 rounded-full text-white/90 hover:bg-white/20 transition duration-200"
-          >
-            Contact Me
-          </a>
-        </div>
-      </div>
-    </div>
-  </motion.div>
-</motion.div>
-
-
+          {/* Description & Contact Button */}
+          <div className="relative group mt-4 lg:right-[3%] md:mt-0 md:absolute md:right-0 lg:top-[-12%] md:w-[25vw] max-w-[1000px] min-w-[250px] text-white/90 text-sm sm:text-base md:text-lg lg:text-[120%]">
+            <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+            <div className="relative z-10 p-4">
+              <p className="leading-relaxed">
+                I am a developer and history enthusiast, bridging technology with the past. I love elegant design, structured code, and meaningful experiences.
+              </p>
+              <div className="mt-6">
+                <a
+                  href="mailto:amli2@wisc.edu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 border border-white/40 rounded-full text-white/90 hover:bg-white/20 transition duration-200"
+                >
+                  Contact Me
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </motion.div>
       
       <motion.div
@@ -118,7 +107,7 @@ export default function Home() {
     
       <motion.div
         style={{ opacity: fadeInNewScreen }}
-        className="w-full min-h-screen bg-[#F5F5F5] text-black flex justify-start p-12 flex-col font-serif"
+        className="w-full min-h-[800px] bg-[#F5F5F5] text-black flex justify-start p-12 flex-col font-serif"
       > 
           <hr className="w-[85%] border-t-4 border-gray-300 mx-auto" />
 
@@ -130,7 +119,7 @@ export default function Home() {
             University of Wisconsin–Madison 
           </h3>
           <h3 className="ml-11">
-              2023-2027
+              2026
           </h3>
           <h3 className="ml-11">
               B.S. Computer Science & History 
