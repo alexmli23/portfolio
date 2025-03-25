@@ -70,7 +70,7 @@ export default function Home() {
             <div className="inline-block relative mt-2">
               <div className="absolute inset-0 bg-black opacity-0 hover:opacity-70 transition-opacity duration-0 hover:duration-50 pointer-events-none"></div>
               <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-[222%] font-light relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-50">
-                Software Engineer
+                Incoming Software Engineer @ MKS
               </h2>
             </div>
           </div>
