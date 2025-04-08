@@ -3,12 +3,12 @@ import { useMemo, useState } from "react";
 
 const images = [
   [
-    { src: "./website.png", alt: "My Online Portfolio Website!", description: "My Own Online Portfolio!.", height: "30vh", width: "50vw", github: "https://github.com/alexmli23?tab=repositories" },
-    { src: "./BookLibrary.png", alt: "Book Full Stack Website", description: "A full-stack book management application.", height: "25vh", width: "40vw", github: "https://github.com/alexmli23/Book-Library" },
+    { src: "./website.webp", alt: "My Online Portfolio Website!", description: "My Own Online Portfolio!.", height: "30vh", width: "50vw", github: "https://github.com/alexmli23?tab=repositories" },
+    { src: "./BookLibrary.webp", alt: "Book Full Stack Website", description: "A full-stack book management application.", height: "25vh", width: "40vw", github: "https://github.com/alexmli23/Book-Library" },
   ],
   [
-    { src: "./GreyScale.png", alt: "A Greyscale application to grey out discrations ", description: "A greyscale transformation project.", height: "20vh", width: "20vw", github: "https://github.com/alexmli23/Greyscale-Tabs" },
-    { src: "./OrangeOpinon.png", alt: "Our Social Website the Orange Opinion", description: "A social platform for sharing opinions on trending topics.", height: "28vh", width: "40vw", github: "https://github.com/alexmli23/MadHacks2024" },
+    { src: "./GreyScale.webp", alt: "A Greyscale application to grey out discrations ", description: "A greyscale transformation project.", height: "20vh", width: "20vw", github: "https://github.com/alexmli23/Greyscale-Tabs" },
+    { src: "./OrangeOpinon.webp", alt: "Our Social Website the Orange Opinion", description: "A social platform for sharing opinions on trending topics.", height: "28vh", width: "40vw", github: "https://github.com/alexmli23/MadHacks2024" },
   ],
 ];
 

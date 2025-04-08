@@ -7,16 +7,16 @@ const images = [
     { src: "./ForestPath.webp", alt: "Forest road", height: "25vh" },
   ],
   [
-    { src: "./MonetAtAIC.webp", alt: "Monet Painting at the Art Institute of Chicago", height: "20vh" },
-    { src: "./ChiSky.webp", alt: "Chicago Skyline", height: "28vh" },
+    { src: "./RelaxRoom.webp", alt: "UVA Mediation Room", height: "20vh" },
+    { src: "./HuluClanWalking.webp", alt: "Last day in UVA", height: "28vh" },
   ],
   [
     { src: "./SnowboardInSeattle.webp", alt: "Snowboarding in Seattle", height: "25vh" },
-    { src: "./NikiConcert.webp", alt: "Niki Concert in Chicago!", height: "30vh" },
+    { src: "./ShinyCharizard.webp", alt: "Shiny Charizard in Pocket TCG", height: "30vh" },
   ],
   [
-    { src: "./CarRide.webp", alt: "Car Ride to Winter Retreat", height: "28vh" },
-    { src: "./Me.webp", alt: "Friends trip to Chicago!", height: "20vh" },
+    { src: "./Veo.webp", alt: "At UVA scootering", height: "28vh" },
+    { src: "./Cville.webp", alt: "Friends trip to UVA!", height: "20vh" },
   ],
 ];
 
