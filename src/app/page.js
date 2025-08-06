@@ -121,7 +121,7 @@ export default function Home() {
             University of Wisconsin–Madison 
           </h3>
           <h3 className="ml-11">
-              Graduation: 2026
+              Graduation: 2027
           </h3>
           <h3 className="ml-11">
               B.S. Computer Science & History 
