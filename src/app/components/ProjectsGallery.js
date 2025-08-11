@@ -64,7 +64,7 @@ const ProjectsGallery = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="flex flex-row justify-center gap-8 mt-16 bg-[#F5F5F5]"
+      className="flex flex-row md:flex-row justify-center gap-8 mt-16 bg-[#F5F5F5]"
     >
       {renderedImages}
     </motion.div>

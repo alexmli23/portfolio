@@ -61,22 +61,21 @@ export default function Home() {
           transition={{ duration: 1, delay: 0.3 }}
           className="absolute top-[43%] translate-y-[-50%] z-10 flex flex-col md:flex-row md:items-center md:justify-between w-full px-6"
         >
-          {/* Name & Job Title */}
-          <div className="relative md:left-[5%] lg:left-[2%]">
-            <div className="absolute inset-0 bg-black opacity-0 hover:opacity-100 transition-opacity duration-0 hover:duration-50 pointer-events-none"></div>
-            <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-[550%] font-bold tracking-wide relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-50">
+          <div className="relative md:left-[5%] lg:left-[2%] px-4 md:px-0">
+            <div className="absolute inset-0 bg-black opacity-0 hover:opacity-100 transition-opacity duration-200 pointer-events-none"></div>
+            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-wide relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-200 leading-tight">
               Alexander M. Li
             </h1>
             <div className="inline-block relative mt-2">
-              <div className="absolute inset-0 bg-black opacity-0 hover:opacity-70 transition-opacity duration-0 hover:duration-50 pointer-events-none"></div>
-              <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-[222%] font-light relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-50">
-                Incoming Software Engineer @ MKS
+              <div className="absolute inset-0 bg-black opacity-0 hover:opacity-70 transition-opacity duration-200 pointer-events-none"></div>
+              <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-light relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-200 leading-snug">
+                Software Engineer Co-op @ MKS
               </h2>
             </div>
           </div>
-
+          
           {/* Description & Contact Button */}
-          <div className="relative group mt-4 lg:right-[3%] md:mt-0 md:absolute md:right-0 lg:top-[-12%] md:w-[25vw] max-w-[1000px] min-w-[250px] text-white/90 text-sm sm:text-base md:text-lg lg:text-[120%]">
+          <div className="relative group mt-8 md:mt-0 md:right-0 lg:right-[3%] lg:top-[-12%] w-full md:w-[25vw] max-w-[1000px] min-w-[250px] text-white/90 text-sm sm:text-base md:text-lg lg:text-[120%]">
             <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
             <div className="relative z-10 p-4">
               <p className="leading-relaxed">
@@ -121,7 +120,7 @@ export default function Home() {
             University of Wisconsin–Madison 
           </h3>
           <h3 className="ml-11">
-              Graduation: 2027
+              Graduation: May 2027
           </h3>
           <h3 className="ml-11">
               B.S. Computer Science & History 
@@ -130,7 +129,7 @@ export default function Home() {
         style={{ opacity: fadeInNewScreen }}
         className="w-full bg-[#F5F5F5] text-black flex justify-start p-12 flex-col"
         >
-          <p className="text-xl sm:text-lg md:text-base">
+          <p className="lg:text-xl sm: text-sm">
             My name is Alex, and I'm currently a junior at the University of Wisconsin - Madison, studying Computer Science 
             and History. I have a strong interest in software development, with prior experience at Wisconsin Athletics
            and Madison Bach Musicians, where I contributed to projects that enhanced digital infrastructure and user 
@@ -139,22 +138,22 @@ export default function Home() {
            my historical curiosity, I enjoy analyzing patterns across time, whether in coding challenges or historical 
            narratives.
           </p>
-          <p className="mt-10 text-xl sm:text-lg md:text-base">
+          <p className="mt-10 lg:text-xl sm: text-sm">
           Outside of school, my hobbies include working out, swimming, hanging out with friends, and exploring history. 
           I enjoy staying active, whether it’s lifting, swimming, or competing in club swimming. I also love reading about 
           historical & present events, especially Early Modern European History, and discovering how the past shapes the present.
           </p>
-          <p className="mt-10 text-xl">
+          <p className="mt-10 lg:text-xl sm: text-sm">
             I'm currently reading:&nbsp; 
-            <a href="https://www.goodreads.com/book/show/609614.True_Love"
+            <a href="https://www.goodreads.com/book/show/18966806-morning-stare"
                target="_blank" 
                rel = "noopener noreferrer"
                className="text-blue-600 underline">
-               True Love 
+               Morning Star
             </a>
-            &nbsp;by Thich Nhat Hanh
+            &nbsp;by Pierce Brown
           </p>
-          <p className="text-xl">
+          <p className="lg:text-xl sm: text-sml">
             I also do leetcode:  &nbsp;
             <a href="https://leetcode.com/u/alexmli/"
               target="_blank" 

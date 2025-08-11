@@ -24,14 +24,18 @@ const ImageCard = ({ src, alt, height }) => (
   <motion.div
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.98 }}
-    className="bg-gray-300 w-[10vw] rounded-lg overflow-hidden will-change-transform"
+    className="bg-gray-300 w-full sm:w-[40vw] md:w-[10vw] rounded-lg overflow-hidden will-change-transform"
     style={{ height }}
     aria-hidden="true"
   >
-    <img src={src} alt={alt} className="object-cover w-full h-full rounded-md" loading="lazy" />
+    <img
+      src={src}
+      alt={alt}
+      className="object-cover w-full h-full rounded-md"
+      loading="lazy"
+    />
   </motion.div>
-);
-
+)
 
 const ImageGallery = () => {
   const renderedImages = useMemo(() => {
@@ -49,7 +53,7 @@ const ImageGallery = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="flex flex-row justify-center gap-8 mt-16"
+      className="flex flex-col md:flex-row justify-center gap-8 mt-16"
     >
       {renderedImages}
     </motion.div>
