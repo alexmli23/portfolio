@@ -1,216 +1,262 @@
-"use client"
-import Image from "next/image"
-import Navbar from "./components/Navbar"
-import ImageGallery from "./components/ImageGallery"
-import { motion, useScroll, useTransform } from "framer-motion"
+"use client";
+
+import Image from "next/image";
+
+import Navbar from "./components/Navbar";
+
+import ImageGallery from "./components/ImageGallery";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+
 import { useState, useEffect, useRef } from "react";
 
 export default function Home() {
-
   const [imageHeight, setImageHeight] = useState(0);
+
   const imgRef = useRef(null);
+
   useEffect(() => {
     if (imgRef.current) {
       setImageHeight(imgRef.current.clientHeight);
     }
   }, []);
+
   const { scrollY } = useScroll();
- 
+
   const fadeOpacity = useTransform(scrollY, [400, 900], [1, 0]);
-  const fadeInNewScreen = useTransform(scrollY, [400,800], [0, 1]);
+
+  const fadeInNewScreen = useTransform(scrollY, [400, 800], [0, 1]);
+
   const blurEffect = useTransform(scrollY, [500, 1000], ["0px", "20px"]);
+
   const scaleEffect = useTransform(scrollY, [400, 1000], [1.1, 1]);
 
   return (
     <div className="relative w-full min-h-screen overflow-x-hidden font-serif">
       {/* Black Overlay on Top*/}
+
       <div className="absolute top-0 left-0 w-full h-[125px] bg-gradient-to-b from-black/80 to-transparent z-10 pointer-events-none"></div>
+
       <div className="text-white/90">
         <Navbar />
       </div>
-      <motion.div 
-        initia={{ opacity:0 }}
-        animate={{ opacity: 1}}
+
+      <motion.div
+        initia={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
         className="relative w-full min-h-[130vh] overflow-hidden"
-        >
-
-        <motion.div 
+      >
+        <motion.div
           style={{
             opacity: fadeOpacity,
-            filter: 'blur(${blurEffect})',
+
+            filter: "blur(${blurEffect})",
+
             scale: scaleEffect,
           }}
-          className="absolute top-0 left-0 w-full h-full">
+          className="absolute top-0 left-0 w-full h-full"
+        >
           <img
-            src="./WandererAboveFog.jpeg"
+            src="./wivenhoe_park_essex_1942.9.10.jpg"
             alt="Background"
             className="w-full h-full object-cover object-center"
           />
-          <motion.div
-            style = {{ opacity: fadeOpacity }}
-            className="absolute bottom-0 w-full h-[250px] bg-gradient-to-b from-transparent to-white"
-          >
 
-          </motion.div>
+          <motion.div
+            style={{ opacity: fadeOpacity }}
+            className="absolute bottom-0 w-full h-[250px] bg-gradient-to-b from-transparent to-white"
+          ></motion.div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: -80 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="absolute top-[43%] translate-y-[-50%] z-10 flex flex-col md:flex-row md:items-center md:justify-between w-full px-6"
+          className="absolute top-[63%] translate-y-[-50%] z-10 flex flex-col md:flex-row md:items-center md:justify-between w-full px-6"
         >
           <div className="relative md:left-[5%] lg:left-[2%] px-4 md:px-0">
-            <div className="absolute inset-0 bg-black opacity-0 hover:opacity-100 transition-opacity duration-200 pointer-events-none"></div>
-            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-wide relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-200 leading-tight">
-              Alexander M. Li
+            <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-wide text-white hover:bg-black hover:bg-opacity-100 transition duration-200 leading-tight px-2 py-1 inline-block">
+              Alex Madison Li
             </h1>
-            <div className="inline-block relative mt-2">
-              <div className="absolute inset-0 bg-black opacity-0 hover:opacity-70 transition-opacity duration-200 pointer-events-none"></div>
-              <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-light relative z-10 text-white hover:bg-black hover:bg-opacity-100 transition duration-200 leading-snug">
+
+            <div className="mt-2">
+              <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light text-white hover:bg-black hover:bg-opacity-100 transition duration-200 leading-snug px-2 py-1 inline-block">
                 Software Engineer Co-op @ MKS
               </h2>
             </div>
           </div>
-          
-          {/* Description & Contact Button */}
-          <div className="relative group mt-8 md:mt-0 md:right-0 lg:right-[3%] lg:top-[-12%] w-full md:w-[25vw] max-w-[1000px] min-w-[250px] text-white/90 text-sm sm:text-base md:text-lg lg:text-[120%]">
-            <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-            <div className="relative z-10 p-4">
-              <p className="leading-relaxed">
-                I am a developer and history enthusiast, bridging technology with the past. I love elegant design, structured code, and meaningful experiences.
-              </p>
-              <div className="mt-6">
-                <a
-                  href="mailto:amli2@wisc.edu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3 border border-white/40 rounded-full text-white/90 hover:bg-white/20 transition duration-200"
-                >
-                  Contact Me
-                </a>
-              </div>
-            </div>
-          </div>
         </motion.div>
       </motion.div>
-      
+
       <motion.div
         style={{
           opacity: fadeOpacity,
+
           backdropFilter: `blur(${blurEffect})`,
-          bottom: `${imageHeight * 0.785}px`, 
+
+          bottom: `${imageHeight * 0.785}px`,
         }}
         className="absolute w-full h-[400px] bg-gradient-to-b from-transparent to-black"
       ></motion.div>
 
-    
       <motion.div
         style={{ opacity: fadeInNewScreen }}
         className="w-full min-h-[800px] bg-[#F5F5F5] text-black flex justify-start p-12 flex-col font-serif"
-      > 
-          <hr className="w-[85%] border-t-4 border-gray-300 mx-auto" />
+      >
+        <hr className="w-[85%] border-t-4 border-gray-300 mx-auto" />
 
-          <motion.h2 className="mt-12 ml-10 text-6xl font-bold">
-            My Portfolio Website
-          </motion.h2>
+        <motion.h2 className="mt-12 ml-10 text-6xl font-bold">
+          My Portfolio Website
+        </motion.h2>
 
-          <h3 className=" ml-11 text-2xl">
-            University of Wisconsin–Madison 
-          </h3>
-          <h3 className="ml-11">
-              Graduation: May 2027
-          </h3>
-          <h3 className="ml-11">
-              B.S. Computer Science & History 
-          </h3>
+        <h3 className=" ml-11 text-2xl">University of Wisconsin–Madison</h3>
+
+        <h3 className="ml-11">Graduation: May 2027</h3>
+
+        <h3 className="ml-11">B.S. Computer Science & History</h3>
+
         <motion.div
-        style={{ opacity: fadeInNewScreen }}
-        className="w-full bg-[#F5F5F5] text-black flex justify-start p-12 flex-col"
+          style={{ opacity: fadeInNewScreen }}
+          className="w-full bg-[#F5F5F5] text-black flex justify-start p-12 flex-col"
         >
           <p className="lg:text-xl sm: text-sm">
-            My name is Alex, and I'm currently a junior at the University of Wisconsin - Madison, studying Computer Science 
-            and History. I have a strong interest in software development, with prior experience at Wisconsin Athletics
-           and Madison Bach Musicians, where I contributed to projects that enhanced digital infrastructure and user 
-           experiences. My passion for history lies in Early Modern European History, where I explore the political, 
-           social, and cultural transformations that shaped the modern world. By combining my technical expertise with 
-           my historical curiosity, I enjoy analyzing patterns across time, whether in coding challenges or historical 
-           narratives.
+            My name is Alex, and I'm currently a junior at UW-Madison! I'm
+            currently studying Computer Science and History. My Interest in
+            Computer Science relates to embedded systems work. On the other hand
+            I love learning more about European History espeically Early Modern
+            Europe. This fall semseter I'm working at MKS as a Software
+            Engineer, and next semester I'll be studying abroad in Italy at
+            the&nbsp;
+            <a
+              href="https://www.unibo.it/en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline"
+            >
+              University of Bologna
+            </a>
+            ! Outside of school and work, I love to workout, play games, and
+            doomscroll!
           </p>
+
           <p className="mt-10 lg:text-xl sm: text-sm">
-          Outside of school, my hobbies include working out, swimming, hanging out with friends, and exploring history. 
-          I enjoy staying active, whether it’s lifting, swimming, or competing in club swimming. I also love reading about 
-          historical & present events, especially Early Modern European History, and discovering how the past shapes the present.
+            Currently I'm working on:
           </p>
+
+          <ul className="list-disc list-inside">
+            <li>
+              This website, hopefully I can start doing writeups on interesting
+              things I learned in history!
+            </li>
+
+            <li>
+              An DIY ESP32-IMU setup that streams live orientation data over
+              Bluetooth to your laptop or phone, rotating a 3D model in real
+              time like a mini AR/VR sensor pipeline
+            </li>
+          </ul>
+
           <p className="mt-10 lg:text-xl sm: text-sm">
-            I'm currently reading:&nbsp; 
-            <a href="https://www.goodreads.com/book/show/18966806-morning-stare"
-               target="_blank" 
-               rel = "noopener noreferrer"
-               className="text-blue-600 underline">
-               Morning Star
+            I just read:&nbsp;
+            <a
+              href="https://www.goodreads.com/book/show/129915654-pride-and-prejudice?ref=nav_sb_ss_1_14"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline"
+            >
+              Pride & Prejudice
+            </a>
+            &nbsp;by Jane Austen
+          </p>
+
+          <p className="lg:text-xl sm: text-sm">
+            I'm currently reading:&nbsp;
+            <a
+              href="https://www.goodreads.com/book/show/33257757-iron-gold"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline"
+            >
+              Iron Gold
             </a>
             &nbsp;by Pierce Brown
           </p>
-          <p className="lg:text-xl sm: text-sml">
-            I also do leetcode:  &nbsp;
-            <a href="https://leetcode.com/u/alexmli/"
-              target="_blank" 
-              rel = "noopener noreferrer"
-              className="text-blue-600 underline">
+
+          <p className="lg:text-xl sm: text-sm">
+            <a
+              href="https://www.goodreads.com/friend/i?feature=friend-invite-url&invite_token=ZmMyYjJiM2ItZmY5Ni00OGExLWExOGQtMzYzNDE5YzcxNzMx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline"
+            >
+              Become my GoodReads friend?
+            </a>
+          </p>
+
+          <p className="lg:text-xl sm: text-sml mt-5">
+            I also do leetcode: &nbsp;
+            <a
+              href="https://leetcode.com/u/alexmli/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline"
+            >
               Check it out!
             </a>
           </p>
         </motion.div>
       </motion.div>
+
       <div className="bg-[#F5F5F5]">
         <hr className="w-[85%] border-t-4 border-gray-300 mx-auto bg-[#F5F5F5]" />
       </div>
+
       <motion.div
         style={{ opacity: fadeInNewScreen }}
-        className="w-full min-h-screen bg-[#F5F5F5] text-black flex justify-start p-12 flex-col font-serif" 
-      > 
+        className="w-full min-h-screen bg-[#F5F5F5] text-black flex justify-start p-12 flex-col font-serif"
+      >
+        <div className="flex flex-col items-center min-h-screen">
+          <h1 className="font-bold text-5xl">Everyone has a story.</h1>
 
-      <div className="flex flex-col items-center min-h-screen">
-          <h1 className="font-bold text-5xl">
-            Everyone has a story.
-          </h1>
           <h1 className="mt-3 text-2xl">
             Here's my story this year through photos
           </h1>
-          
-          <div className="flex flex-row justify-center gap-8">
-           
-          </div>
-            <ImageGallery />
+
+          <div className="flex flex-row justify-center gap-8"></div>
+
+          <ImageGallery />
         </div>
-        
+
         <div className="flex flex-col justify-start relative bottom-0 font-serif text-gray-900">
           {/* Heading & Links */}
+
           <div className="flex flex-col sm:flex-row items-center mt-2">
             <h1 className="text-4xl sm:text-5xl md:text-7xl tracking-wide text-center sm:text-left">
               Let's Connect
             </h1>
+
             <div className="flex flex-col sm:flex-row sm:ml-12 sm:space-x-12 mt-3 text-xl sm:text-2xl md:text-4xl font-light text-center sm:text-left">
-              <a 
-                href="https://www.linkedin.com/in/alexanderli523/" 
+              <a
+                href="https://www.linkedin.com/in/alexanderli523/"
                 className="text-[#5a5a5a] hover:text-[#005582] transition-colors duration-300"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 LinkedIn
               </a>
-              <a 
-                href="https://github.com/alexmli23" 
+
+              <a
+                href="https://github.com/alexmli23"
                 className="text-[#5a5a5a] hover:text-[#222] transition-colors duration-300 sm:ml-12"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 GitHub
               </a>
-              <a 
-                href="mailto:amli2@wisc.edu" 
+
+              <a
+                href="mailto:amli2@wisc.edu"
                 className="text-[#5a5a5a] hover:text-[#8b0000] transition-colors duration-300 sm:ml-12"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -221,6 +267,7 @@ export default function Home() {
           </div>
 
           {/* Divider */}
+
           <hr className="w-[90%] sm:w-[82%] border-t-2 border-gray-400 mt-4" />
         </div>
       </motion.div>
