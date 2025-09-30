@@ -12,9 +12,11 @@ const ProjectsNavbar = () => {
       ? pathname === href // exact match (for home link)
       : pathname.startsWith(href); // prefix match (for other links)
 
-    return `relative hover:text-black after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-[2px] after:bg-black after:transition-all after:duration-300 hover:after:w-full hover:after:left-0 ${
-      isActive ? "after:w-full after:left-0 text-black" : ""
-    }`;
+    return `relative hover:text-black 
+      after:content-[''] after:absolute after:left-0 after:bottom-0 
+      after:h-[2px] after:bg-black after:transition-all after:duration-300 
+      after:w-0 hover:after:w-full
+      ${isActive ? "after:w-full text-black" : ""}`;
   };
 
   return (
@@ -39,7 +41,10 @@ const ProjectsNavbar = () => {
           href={`/Alex_M_Li_Resume_Copy.pdf`}
           target="_blank"
           rel="noopener noreferrer"
-          className="relative hover:text-black after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-[2px] after:bg-black after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
+          className="relative hover:text-black 
+            after:content-[''] after:absolute after:left-0 after:bottom-0 
+            after:h-[2px] after:bg-black after:transition-all after:duration-300 
+            after:w-0 hover:after:w-full"
         >
           Resume
         </a>

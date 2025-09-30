@@ -24,7 +24,7 @@ export async function POST(req) {
       title: data.title,
       description: data.description,
       content: data.content,
-      image: data.image, // ✅ accept photo URL
+      image: data.image, 
       tags: data.tags,
     });
     return NextResponse.json(project);
