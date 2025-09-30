@@ -1,13 +1,9 @@
 "use client";
 
 import Image from "next/image";
-
 import Navbar from "./components/Navbar";
-
 import ImageGallery from "./components/ImageGallery";
-
 import { motion, useScroll, useTransform } from "framer-motion";
-
 import { useState, useEffect, useRef } from "react";
 
 export default function Home() {
@@ -22,13 +18,9 @@ export default function Home() {
   }, []);
 
   const { scrollY } = useScroll();
-
   const fadeOpacity = useTransform(scrollY, [400, 900], [1, 0]);
-
   const fadeInNewScreen = useTransform(scrollY, [400, 800], [0, 1]);
-
   const blurEffect = useTransform(scrollY, [500, 1000], ["0px", "20px"]);
-
   const scaleEffect = useTransform(scrollY, [400, 1000], [1.1, 1]);
 
   return (
@@ -75,6 +67,7 @@ export default function Home() {
           transition={{ duration: 1, delay: 0.3 }}
           className="absolute top-[63%] translate-y-[-50%] z-10 flex flex-col md:flex-row md:items-center md:justify-between w-full px-6"
         >
+          {/* Left section */}
           <div className="relative md:left-[5%] lg:left-[2%] px-4 md:px-0">
             <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-wide text-white hover:bg-black hover:bg-opacity-100 transition duration-200 leading-tight px-2 py-1 inline-block">
               Alex Madison Li
@@ -85,6 +78,20 @@ export default function Home() {
                 Software Engineer Co-op @ MKS
               </h2>
             </div>
+          </div>
+
+          {/* Right section */}
+          <div className="px-4 mt-32">
+            <h2 className="text-xs text-white">
+              <a href="https://www.nga.gov/artworks/1147-wivenhoe-park-essex"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-grab"
+            >Wivenhoe Park, Essex</a>
+            </h2>
+            <p className="text-xs text-white opacity-80">
+              John Constable, 1816
+            </p>
           </div>
         </motion.div>
       </motion.div>
@@ -109,13 +116,9 @@ export default function Home() {
         <motion.h2 className="mt-12 ml-10 text-6xl font-bold">
           My Portfolio Website
         </motion.h2>
-
         <h3 className=" ml-11 text-2xl">University of Wisconsin–Madison</h3>
-
         <h3 className="ml-11">Graduation: May 2027</h3>
-
         <h3 className="ml-11">B.S. Computer Science & History</h3>
-
         <motion.div
           style={{ opacity: fadeInNewScreen }}
           className="w-full bg-[#F5F5F5] text-black flex justify-start p-12 flex-col"
