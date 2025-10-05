@@ -20,11 +20,21 @@ const ProjectsNavbar = () => {
   };
 
   return (
-    <div className="absolute top-0 left-0 w-full z-20 flex justify-between px-10 py-6 text-black/90 lg:text-[85%] 2xl:text-[150%] uppercase tracking-wide font-serif">
+    <div
+      className="
+        absolute top-0 left-0 w-full z-20 flex justify-between items-center
+        px-4 py-3 text-black/90
+        sm:px-6 sm:py-4
+        md:px-8 md:py-5
+        lg:px-10 lg:py-6
+        text-sm sm:text-base lg:text-[85%] 2xl:text-[150%]
+        uppercase tracking-wide font-serif
+      "
+    >
       <Link href={`${basePath}/`} className={linkClass(`${basePath}/`, true)}>
         <span>Alexander M. Li</span>
       </Link>
-      <div className="space-x-6 flex">
+      <div className="space-x-4 sm:space-x-6 flex text-sm sm:text-base">
         <Link
           href={`${basePath}/research`}
           className={linkClass(`${basePath}/research`)}
@@ -38,7 +48,7 @@ const ProjectsNavbar = () => {
           Projects
         </Link>
         <a
-          href={`/Alex_M_Li_Resume_Copy.pdf`}
+          href="/Alex_M_Li_Resume_Copy.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="relative hover:text-black 

@@ -37,7 +37,7 @@ export default function Home() {
         initia={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
-        className="relative w-full min-h-[130vh] overflow-hidden"
+        className="relative w-full min-h-screen overflow-hidden"
       >
         <motion.div
           style={{
@@ -57,7 +57,7 @@ export default function Home() {
 
           <motion.div
             style={{ opacity: fadeOpacity }}
-            className="absolute bottom-0 w-full h-[250px] bg-gradient-to-b from-transparent to-white"
+            className="absolute bottom-0 w-full bg-gradient-to-b from-transparent to-white"
           ></motion.div>
         </motion.div>
 
@@ -65,7 +65,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: -80 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="absolute top-[63%] translate-y-[-50%] z-10 flex flex-col md:flex-row md:items-center md:justify-between w-full px-6"
+          className="absolute top-[83%] translate-y-[-50%] z-10 flex flex-col md:flex-row md:items-center md:justify-between w-full px-6"
         >
           {/* Left section */}
           <div className="relative md:left-[5%] lg:left-[2%] px-4 md:px-0">
@@ -113,17 +113,19 @@ export default function Home() {
       >
         <hr className="w-[85%] border-t-4 border-gray-300 mx-auto" />
 
-        <motion.h2 className="mt-12 ml-10 text-6xl font-bold">
+        <motion.h2 className="mt-12 lg:ml-11 sm:ml-4 text-6xl font-bold">
           My Portfolio Website
         </motion.h2>
-        <h3 className=" ml-11 text-2xl">University of Wisconsin–Madison</h3>
-        <h3 className="ml-11">Graduation: May 2027</h3>
-        <h3 className="ml-11">B.S. Computer Science & History</h3>
+        <div className="lg:ml-11 sm:ml-4">
+          <h3 className="text-2xl">University of Wisconsin–Madison</h3>
+          <h3 className="">Graduation: May 2027</h3>
+          <h3 className="">B.S. Computer Science & History</h3>
+        </div>
         <motion.div
           style={{ opacity: fadeInNewScreen }}
-          className="w-full bg-[#F5F5F5] text-black flex justify-start p-12 flex-col"
+          className="w-full lg:p-12 sm:p-4 bg-[#F5F5F5] text-black flex justify-start flex-col"
         >
-          <p className="lg:text-xl sm: text-sm">
+          <p className="lg:text-xl sm:text-sm ">
             My name is Alex, and I'm currently a junior at UW-Madison! I'm
             currently studying Computer Science and History. My Interest in
             Computer Science relates to embedded systems work. On the other hand

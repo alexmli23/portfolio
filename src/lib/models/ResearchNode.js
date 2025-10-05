@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
 const ResearchNodeSchema = new mongoose.Schema({
-  topicId: { type: mongoose.Schema.Types.ObjectId, ref: "ResearchTopic", required: true },
   title: { type: String, required: true },
-  content: String,  // blog content
+  topicId: { type: mongoose.Schema.Types.ObjectId, ref: "ResearchTopic" },
   connections: [{ type: mongoose.Schema.Types.ObjectId, ref: "ResearchNode" }],
+  markdownUrl: { type: String }, // 👈 add this
   createdAt: { type: Date, default: Date.now },
 });
 

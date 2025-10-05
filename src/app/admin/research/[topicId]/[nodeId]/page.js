@@ -1,268 +1,79 @@
 "use client";
-
-import { useEffect, useState, useRef } from "react";
 import { useParams } from "next/navigation";
-import dynamic from "next/dynamic";
+import { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import rehypeSanitize from "rehype-sanitize";
 
-const ForceGraph2D = dynamic(
-  () => import("react-force-graph").then(mod => mod.ForceGraph2D),
-  { ssr: false }
-);
+export default function MarkdownUploadPage() {
+  const { nodeId } = useParams(); // ✅ get from route
+  const [markdown, setMarkdown] = useState("");
+  const [file, setFile] = useState(null);
+  const [uploadStatus, setUploadStatus] = useState("");
 
-export default function AdminTopicGraphPage() {
-  const { topicId } = useParams();
+  async function handleUpload(e) {
+    e.preventDefault();
+    if (!file) return alert("Please select a markdown file.");
 
-  const [allNodes, setAllNodes] = useState([]);
-  const [links, setLinks] = useState([]);
-  const [selectedNode, setSelectedNode] = useState(null);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("nodeId", nodeId); // 👈 automatically include nodeId
 
-  // editor state for selected node
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [connections, setConnections] = useState([]);
-
-  const [showNewNode, setShowNewNode] = useState(false);
-  const [newTitle, setNewTitle] = useState("");
-  const [newContent, setNewContent] = useState("");
-  const [message, setMessage] = useState("");
-
-  const graphRef = useRef();
-  const [dims, setDims] = useState({ w: 800, h: 600 });
-
-  useEffect(() => {
-    function handleResize() {
-      setDims({ w: window.innerWidth, h: window.innerHeight });
-    }
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    fetchNodes();
-  }, [topicId]);
-
-  const fetchNodes = async () => {
-    const res = await fetch(`/api/research/nodes?topicId=${topicId}`, { cache: "no-store" });
-    if (res.ok) {
-      const data = await res.json();
-      setAllNodes(data);
-
-      const allLinks = [];
-      data.forEach((n) => {
-        n.connections?.forEach((conn) => {
-          allLinks.push({ source: n._id, target: conn });
-        });
+    try {
+      const res = await fetch("/api/research/uploadMarkdown", {
+        method: "POST",
+        body: formData,
       });
-      setLinks(allLinks);
+
+      if (res.ok) {
+        const { markdownUrl } = await res.json();
+        const response = await fetch(markdownUrl);
+        const text = await response.text();
+        setMarkdown(text);
+        setUploadStatus("✅ Uploaded successfully!");
+      } else {
+        setUploadStatus("❌ Upload failed.");
+      }
+    } catch (err) {
+      console.error("Upload error:", err);
+      setUploadStatus("❌ Upload failed (check console).");
     }
-  };
-
-  const handleNodeClick = (node) => {
-    const n = allNodes.find((n) => n._id === node.id);
-    if (n) {
-      setSelectedNode(n);
-      setTitle(n.title || "");
-      setContent(n.content || "");
-      setConnections(n.connections || []);
-    }
-  };
-
-  const handleBackgroundClick = () => {
-    setSelectedNode(null); // close drawer when clicking empty space
-    setShowNewNode(true);  // optionally show new-node modal
-  };
-
-  async function saveNode(e) {
-    e.preventDefault();
-    if (!selectedNode) return;
-    const res = await fetch(`/api/research/nodes/${selectedNode._id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title,
-        content,
-        connections,
-      }),
-    });
-    if (res.ok) {
-      setMessage("Node saved!");
-      setSelectedNode(null);
-      fetchNodes();
-    } else {
-      setMessage("Error saving node");
-    }
-  }
-
-  async function deleteNode() {
-    if (!selectedNode) return;
-    if (!confirm("Delete this node?")) return;
-    const res = await fetch(`/api/research/nodes/${selectedNode._id}`, { method: "DELETE" });
-    if (res.ok) {
-      setMessage("Node deleted");
-      setSelectedNode(null);
-      fetchNodes();
-    } else {
-      setMessage("Error deleting node");
-    }
-  }
-
-  async function addNode(e) {
-    e.preventDefault();
-    await fetch("/api/research/nodes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ topicId, title: newTitle, content: newContent }),
-    });
-    setShowNewNode(false);
-    setNewTitle("");
-    setNewContent("");
-    fetchNodes();
   }
 
   return (
-    <div className="relative w-full h-screen">
-      {/* Graph */}
-      <div className="absolute inset-0 z-0">
-        <ForceGraph2D
-          ref={graphRef}
-          width={dims.w}
-          height={dims.h}
-          graphData={{
-            nodes: allNodes.map((n) => ({ id: n._id, name: n.title })),
-            links,
-          }}
-          nodeLabel="name"
-          nodeAutoColorBy="id"
-          onNodeClick={handleNodeClick}
-          onBackgroundClick={handleBackgroundClick}
+    <div className="min-h-screen p-6 bg-gray-50 flex flex-col items-center">
+      <h1 className="text-2xl font-bold mb-4">Upload Markdown for Node</h1>
+
+      <form
+        onSubmit={handleUpload}
+        className="bg-white p-6 rounded-lg shadow-md w-full max-w-md space-y-3"
+      >
+        <p className="text-gray-600 text-sm">Node ID: {nodeId}</p>
+
+        <input
+          type="file"
+          accept=".md"
+          onChange={(e) => setFile(e.target.files?.[0] || null)}
+          className="border p-2 rounded w-full"
         />
-      </div>
 
-      {/* Right-hand drawer editor (30-40% width) */}
-      {selectedNode && (
-        <div
-          className="absolute top-0 right-0 z-10 h-full bg-white/95 backdrop-blur p-6 overflow-y-auto shadow-lg"
-          style={{ width: "35%" }}
+        <button
+          type="submit"
+          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition"
         >
-          <h1 className="text-xl font-bold mb-2">Edit Node</h1>
-          {connections.length > 0 && (
-            <div className="mb-4">
-              <p className="font-semibold">Connected to:</p>
-              <ul className="list-disc list-inside text-sm">
-                {allNodes
-                  .filter((n) => connections.includes(n._id))
-                  .map((n) => (
-                    <li key={n._id}>{n.title}</li>
-                  ))}
-              </ul>
-            </div>
-          )}
+          Upload Markdown
+        </button>
+      </form>
 
-          <form onSubmit={saveNode} className="space-y-3">
-            <input
-              className="border p-2 w-full"
-              type="text"
-              placeholder="Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <textarea
-              className="border p-2 w-full"
-              rows={6}
-              placeholder="Content"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            />
-            <div>
-              <p className="font-semibold mb-1">Connections (select nodes to link):</p>
-              <div className="max-h-40 overflow-y-auto border p-2 rounded space-y-1 bg-white">
-                {allNodes
-                  .filter((n) => n._id !== selectedNode._id)
-                  .map((n) => (
-                    <label key={n._id} className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        checked={connections.includes(n._id)}
-                        onChange={(e) => {
-                          if (e.target.checked) {
-                            setConnections([...connections, n._id]);
-                          } else {
-                            setConnections(connections.filter((c) => c !== n._id));
-                          }
-                        }}
-                      />
-                      <span>{n.title}</span>
-                    </label>
-                  ))}
-              </div>
-            </div>
-            <div className="flex gap-2">
-              <button
-                type="submit"
-                className="bg-blue-500 text-white p-2 rounded w-full"
-              >
-                Save
-              </button>
-              <button
-                type="button"
-                onClick={deleteNode}
-                className="bg-red-500 text-white p-2 rounded w-full"
-              >
-                Delete
-              </button>
-              <button
-                type="button"
-                onClick={() => setSelectedNode(null)}
-                className="bg-gray-300 p-2 rounded w-full"
-              >
-                Close
-              </button>
-            </div>
-          </form>
-          {message && <p className="text-center">{message}</p>}
-        </div>
-      )}
+      {uploadStatus && <p className="mt-4 text-gray-700">{uploadStatus}</p>}
 
-      {/* Modal for creating new node */}
-      {showNewNode && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded max-w-md w-full space-y-3">
-            <h3 className="text-xl font-bold mb-2">Create New Node</h3>
-            <form onSubmit={addNode} className="space-y-3">
-              <input
-                className="border p-2 w-full"
-                type="text"
-                placeholder="Title"
-                value={newTitle}
-                onChange={(e) => setNewTitle(e.target.value)}
-              />
-              <textarea
-                className="border p-2 w-full"
-                rows={4}
-                placeholder="Content"
-                value={newContent}
-                onChange={(e) => setNewContent(e.target.value)}
-              />
-              <div className="flex gap-2">
-                <button
-                  type="submit"
-                  className="bg-blue-500 text-white p-2 rounded w-full"
-                >
-                  Save
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowNewNode(false)}
-                  className="bg-gray-300 p-2 rounded w-full"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
+      {markdown && (
+        <div className="mt-8 prose max-w-none bg-white p-4 rounded shadow-md">
+          <ReactMarkdown rehypePlugins={[rehypeSanitize]}>
+            {markdown}
+          </ReactMarkdown>
         </div>
       )}
     </div>
   );
 }
+
