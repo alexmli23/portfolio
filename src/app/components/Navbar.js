@@ -25,25 +25,13 @@ const Navbar = () => {
         md:px-8 md:py-5
         lg:px-10 lg:py-6
         text-sm sm:text-base lg:text-[85%] 2xl:text-[150%]
-        uppercase tracking-wide font-serif
+        uppercase tracking-wide font-mono
       "
     >
       <Link href={`${basePath}/`} className={linkClass(`${basePath}/`, true)}>
-        <span>Alexander M. Li</span>
+        <span>AML - 2026</span>
       </Link>
       <div className="space-x-4 sm:space-x-6 flex text-sm sm:text-base">
-        <Link
-          href={`${basePath}/research`}
-          className={linkClass(`${basePath}/research`)}
-        >
-          Research
-        </Link>
-        <Link
-          href={`${basePath}/projects`}
-          className={linkClass(`${basePath}/projects`)}
-        >
-          Projects
-        </Link>
         <a
           href="/Alex_M_Li_Resume_Copy.pdf"
           target="_blank"
