@@ -3,7 +3,7 @@ export default function Projects() {
     {
       num: "01",
       title: "This Site",
-      tags: ["Next.js", "Framer Motion", "Tailwind"],
+      tags: ["Next.js", "Tailwind"],
       desc: "Personal portfolio with scroll animations and a Constable painting. Hoping to add history writeups soon.",
       status: "In Progress",
     },
