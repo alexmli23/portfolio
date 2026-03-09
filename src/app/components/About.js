@@ -1,7 +1,7 @@
 export default function About() {
   const rows = [
     ["Status", "Junior — May 2027"],
-    ["Degree", "B.S. CS & History"],
+    ["Degree", "B.S. CS & History @ UW-Madison"],
     ["Current Role", "Student @ Università di Bologna"],
     ["Next Up", "Internship this summer"],
     [
@@ -51,11 +51,11 @@ export default function About() {
               Software Enginner,
               <br />
               <span className="italic text-[#a04632]">
-                studying History
+                and History
               </span>
             </h2>
             <h3 className="text-lg sm:text-xl lg:text-2xl leading-tight mb-5 font-bold sm:mb-6">
-                Prev. MKS, Wisconsin Athletics
+                Prev.&nbsp; <i>MKS, Wisconsin Athletics</i>
             </h3>
 
             <p className="text-base sm:text-lg leading-relaxed text-[#3a3028]">

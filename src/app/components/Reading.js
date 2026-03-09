@@ -1,16 +1,16 @@
 function Reading() {
   const readingList = [
     {
-      status: "Just Finished",
-      title: "Guns, Germs, and Steel: The Fates of Human Societies",
-      author: "Jared Diamond",
-      link: "https://www.goodreads.com/book/show/1842.Guns_Germs_and_Steel",
-    },
-    {
       status: "Currently Reading",
       title: "Count of Monte Cristo",
       author: "Alexandre Dumas",
       link: "https://www.goodreads.com/book/show/7126.The_Count_of_Monte_Cristo?from_search=true&from_srp=true&qid=AJ57tdxO7C&rank=1",
+    },
+    {
+      status: "Just Finished",
+      title: "Guns, Germs, and Steel: The Fates of Human Societies",
+      author: "Jared Diamond",
+      link: "https://www.goodreads.com/book/show/1842.Guns_Germs_and_Steel",
     },
   ];
 
@@ -30,7 +30,7 @@ function Reading() {
           {/* quote */}
           <div>
             <h2 className="italic text-[clamp(2rem,3.5vw,3rem)] font-light mb-8 text-[#F2EDE4]/90">
-              "A reader lives a thousand lives before he dies."
+              I like to read sometimes
             </h2>
 
             <a
@@ -39,7 +39,7 @@ function Reading() {
               rel="noopener noreferrer"
               className="font-mono text-xs tracking-widest text-yellow-400 border-b border-yellow-400 pb-1 hover:opacity-80"
             >
-              FOLLOW ON GOODREADS →
+              GOODREADS →
             </a>
           </div>
 
